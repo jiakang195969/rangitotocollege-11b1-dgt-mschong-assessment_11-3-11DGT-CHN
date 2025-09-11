@@ -9,14 +9,15 @@ def click1():
     back = PhotoImage(file="normal.png")
     background=back.subsample(2,2)
     totalnumber=21
-    label1 = Label(game1, image=background,text=f"Total number:{totalnumber}",compound="bottom",font=("Ariel",28),anchor="n")
-    label1.pack()
-    text=Text(game1,height=10,width=50) 
+    canvas1 = Canvas(game1, width=background.width(), height=background.height(), highlightthickness=0)
+    canvas1.pack()
+    canvas1.background = background
+    canvas1.create_image(0, 0, anchor="nw", image=background)
+    text_=canvas1.create_text(480, 65, text=f"Total number:{totalnumber}",font=("Ariel",40))
     listplayer=[]
     listcomputer=[]
-    text.insert(END,str(listplayer))
-    text.insert(END,str(listcomputer))
-    text.pack()  
+    text1=canvas1.create_text(480,90,text=f"you: {listplayer}", font=("Ariel",20))
+    text2=canvas1.create_text(480,110,text="computer: {listcomputer}", font=("Ariel",20))
     def click11():
         game11=Toplevel()
         game11.title("rules")
@@ -29,32 +30,32 @@ def click1():
         nonlocal totalnumber
         totalnumber-=1
         listplayer.append(1)
-        text.insert(END,str(listplayer))
-        label1.config(text=f"Total number:{totalnumber}")
+        canvas1.itemconfig(text1,text=f"you: {listplayer}")
+        canvas1.itemconfig(text_,text=f"Total number:{totalnumber}")
         totalnumber-=3
         listcomputer.append(3)
-        text.insert(END,str(listcomputer))
-        label1.config(text=f"Total number:{totalnumber}")
+        canvas1.itemconfig(text2,text=f"computer: {listcomputer}")
+        canvas1.itemconfig(text_,text=f"Total number:{totalnumber}")
     def add2():
         nonlocal totalnumber
         totalnumber-=2
         listplayer.append(2)
-        text.insert(END,str(listplayer))
-        label1.config(text=f"Total number:{totalnumber}")
+        canvas1.itemconfig(text1,text=f"you: {listplayer}")
+        canvas1.itemconfig(text_,text=f"Total number:{totalnumber}")
         totalnumber-=2
         listcomputer.append(2)
-        text.insert(END,str(listcomputer))
-        label1.config(text=f"Total number:{totalnumber}")
+        canvas1.itemconfig(text2,text=f"computer: {listcomputer}")
+        canvas1.itemconfig(text_,text=f"Total number:{totalnumber}")
     def add3():
         nonlocal totalnumber
         totalnumber-=3
         listplayer.append(3)
-        text.insert(END,str(listplayer))
-        label1.config(text=f"Total number:{totalnumber}")
+        canvas1.itemconfig(text1,text=f"you: {listplayer}")
+        canvas1.itemconfig(text_,text=f"Total number:{totalnumber}")
         totalnumber-=1
         listcomputer.append(1)
-        text.insert(END,str(listcomputer))
-        label1.config(text=f"Total number:{totalnumber}")
+        canvas1.itemconfig(text2,text=f"computer: {listcomputer}")
+        canvas1.itemconfig(text_,text=f"Total number:{totalnumber}")
     buttona1 = Button(game1,borderwidth=0, highlightthickness=0,image=questionpicture1)
     buttona1.place(x=10,y=100,width=50,height=50)
     buttona1.config(command=click11)
