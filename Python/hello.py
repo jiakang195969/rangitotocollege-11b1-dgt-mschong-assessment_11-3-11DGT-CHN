@@ -3,7 +3,21 @@ from tkinter import *
 window = Tk()
 questionpicture=PhotoImage(file="question.png")
 questionpicture1=questionpicture.subsample(2,2)
-def click1():
+def choice1():
+    choice_win = Toplevel()
+    choice_win.title("choose")
+    mode_var = IntVar(value=1)   
+    yes_button = Radiobutton(choice_win, text="Yes", variable=mode_var, value=1)
+    no_button = Radiobutton(choice_win, text="No", variable=mode_var, value=2)
+    yes_button.pack()
+    no_button.pack()
+    def yesorno():
+        select = mode_var.get()  
+        choice_win.destroy()      
+        click1(select)           
+    buttonyon = Button(choice_win, text="confirm", command=yesorno)
+    buttonyon.pack()
+def click1(mode):
     game1 = Toplevel()
     game1.title("21 games")
     back = PhotoImage(file="normal.png")
@@ -16,9 +30,16 @@ def click1():
     text_=canvas1.create_text(480, 65, text=f"Total number:{totalnumber}",font=("Ariel",40))
     listplayer=[]
     listcomputer=[]
-    text1=canvas1.create_text(480,90,text=f"you: {listplayer}", font=("Ariel",20))
-    text2=canvas1.create_text(480,110,text="computer: {listcomputer}", font=("Ariel",20))
+    text1=canvas1.create_text(480,110,text=f"you: {listplayer}", font=("Ariel",20))
+    text2=canvas1.create_text(480,140,text=f"computer: {listcomputer}", font=("Ariel",20))
     def click11():
+        game11=Toplevel()
+        game11.title("rules")
+        bkk=PhotoImage(file="1.1.png")
+        bk2 = bkk.subsample(2,2)
+        label11= Label(game11, image=bk2)
+        label11.pack()
+        game11.mainloop()
         game11=Toplevel()
         game11.title("rules")
         bk=PhotoImage(file="1.1.png")
@@ -27,15 +48,33 @@ def click1():
         label11.pack()
         game11.mainloop()
     def add1():
-        nonlocal totalnumber
-        totalnumber-=1
-        listplayer.append(1)
-        canvas1.itemconfig(text1,text=f"you: {listplayer}")
-        canvas1.itemconfig(text_,text=f"Total number:{totalnumber}")
-        totalnumber-=3
-        listcomputer.append(3)
-        canvas1.itemconfig(text2,text=f"computer: {listcomputer}")
-        canvas1.itemconfig(text_,text=f"Total number:{totalnumber}")
+        if mode==1:
+            nonlocal totalnumber
+            totalnumber-=1    
+            listplayer.append(1)
+            canvas1.itemconfig(text1,text=f"you: {listplayer}")
+            canvas1.itemconfig(text_,text=f"Total number:{totalnumber}")
+            if totalnumber<=0:
+                def gameover(mode,game1):
+                    over=Toplevel()
+                    over.title("game over")
+                    labelover= Label(over, text="You lose!")
+                    def play_again():
+                         over.destroy()
+                         game1.destroy()
+                         click1(mode)   
+                    def back_to_menu():
+                         over.destroy()
+                         game1.destroy()      
+                    labelover.pack()
+                    buttonplayagain= Button(over, text="Play Again", command=play_again)
+                    buttonplayagain.pack()
+                    buttonbacktomenu= Button(over, text="Back to Menu", command=back_to_menu)
+                    buttonbacktomenu.pack()
+            totalnumber-=3
+            listcomputer.append(3)
+            canvas1.itemconfig(text2,text=f"computer: {listcomputer}")
+            canvas1.itemconfig(text_,text=f"Total number:{totalnumber}")
     def add2():
         nonlocal totalnumber
         totalnumber-=2
@@ -148,7 +187,7 @@ button3.place(x=227,y=290,width=202,height=157)
 button4 = Button(window,text="",borderwidth=0, highlightthickness=0,image=imagefour)
 button4.place(x=525,y=290,width=202,height=157)
 label.pack()
-button1.config(command=click1)
+button1.config(command=choice1)
 button2.config(command=click2)
 button3.config(command=click3)
 button4.config(command=click4)
