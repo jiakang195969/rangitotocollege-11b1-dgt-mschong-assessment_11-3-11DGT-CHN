@@ -34,12 +34,28 @@ def click1(mode):
     text2=canvas1.create_text(480,140,text=f"computer: {listcomputer}", font=("Ariel",20))
     if mode==2:
         import random
-        nonlocal totalnumber
         a=random.randint(1,3)
         totalnumber-=a
         listcomputer.append(a)
         canvas1.itemconfig(text2,text=f"computer: {listcomputer}")
         canvas1.itemconfig(text_,text=f"Total number:{totalnumber}")
+    def gameover(mode,game1):
+        over=Toplevel()
+        over.title("game over")
+        labelover= Label(over, text="You lose!")
+        def play_again():
+            over.destroy()
+            game1.destroy()
+            click1(mode)   
+        def back_to_menu():
+            over.destroy()
+            game1.destroy()           
+        labelover.pack()
+        buttonplayagain= Button(over, text="Play Again", command=play_again)
+        buttonplayagain.pack()
+        buttonbacktomenu= Button(over, text="Back to Menu", command=back_to_menu)
+        buttonbacktomenu.pack()
+                    
     def click11():
         game11=Toplevel()
         game11.title("rules")
@@ -62,54 +78,23 @@ def click1(mode):
             canvas1.itemconfig(text1,text=f"you: {listplayer}")
             canvas1.itemconfig(text_,text=f"Total number:{totalnumber}")
             if totalnumber<=0:
-                def gameover(mode,game1):
-                    over=Toplevel()
-                    over.title("game over")
-                    labelover= Label(over, text="You lose!")
-                    def play_again():
-                        over.destroy()
-                        game1.destroy()
-                        click1(mode)   
-                    def back_to_menu():
-                        over.destroy() 
-                        game1.destroy()          
-                    labelover.pack()
-                    buttonplayagain= Button(over, text="Play Again", command=play_again)
-                    buttonplayagain.pack()
-                    buttonbacktomenu= Button(over, text="Back to Menu", command=back_to_menu)
-                    buttonbacktomenu.pack()
-                    return
                 gameover(mode,game1)
+                return
             else:
                 totalnumber-=3
                 listcomputer.append(3)
                 canvas1.itemconfig(text2,text=f"computer: {listcomputer}")
                 canvas1.itemconfig(text_,text=f"Total number:{totalnumber}")
-        if mode==2:
-            nonlocal totalnumber
+                
+        else:
+            
             totalnumber-=1    
             listplayer.append(1)
             canvas1.itemconfig(text1,text=f"you: {listplayer}")
             canvas1.itemconfig(text_,text=f"Total number:{totalnumber}")
             if totalnumber<=0:
-                def gameover(mode,game1):
-                    over=Toplevel()
-                    over.title("game over")
-                    labelover= Label(over, text="You lose!")
-                    def play_again():
-                        over.destroy()
-                        game1.destroy()
-                        click1(mode)   
-                    def back_to_menu():
-                        over.destroy() 
-                        game1.destroy()          
-                    labelover.pack()
-                    buttonplayagain= Button(over, text="Play Again", command=play_again)
-                    buttonplayagain.pack()
-                    buttonbacktomenu= Button(over, text="Back to Menu", command=back_to_menu)
-                    buttonbacktomenu.pack()
-                    return
                 gameover(mode,game1)
+                return  
             else:
                 import random
                 a=random.randint(1,3)
@@ -118,24 +103,8 @@ def click1(mode):
                 canvas1.itemconfig(text2,text=f"computer: {listcomputer}")
                 canvas1.itemconfig(text_,text=f"Total number:{totalnumber}")
                 if totalnumber<=0:
-                def gameover(mode,game1):
-                    over=Toplevel()
-                    over.title("game over")
-                    labelover= Label(over, text="You lose!")
-                    def play_again():
-                        over.destroy()
-                        game1.destroy()
-                        click1(mode)   
-                    def back_to_menu():
-                        over.destroy() 
-                        game1.destroy()          
-                    labelover.pack()
-                    buttonplayagain= Button(over, text="Play Again", command=play_again)
-                    buttonplayagain.pack()
-                    buttonbacktomenu= Button(over, text="Back to Menu", command=back_to_menu)
-                    buttonbacktomenu.pack()
-                    return
-                gameover(mode,game1)
+                    gameover(mode,game1)
+                    return              
     def add2():
         if mode==1:
             nonlocal totalnumber
@@ -144,27 +113,27 @@ def click1(mode):
             canvas1.itemconfig(text1,text=f"you: {listplayer}")
             canvas1.itemconfig(text_,text=f"Total number:{totalnumber}")
             if totalnumber<=0:
-                def gameover(mode,game1):
-                    over=Toplevel()
-                    over.title("game over")
-                    labelover= Label(over, text="You lose!")
-                    def play_again():
-                        over.destroy()
-                        game1.destroy()
-                        click1(mode)   
-                    def back_to_menu():
-                        over.destroy()
-                        game1.destroy()           
-                    labelover.pack()
-                    buttonplayagain= Button(over, text="Play Again", command=play_again)
-                    buttonplayagain.pack()
-                    buttonbacktomenu= Button(over, text="Back to Menu", command=back_to_menu)
-                    buttonbacktomenu.pack()
-                    return
                 gameover(mode,game1)
+                return
             else:
                 totalnumber-=2
                 listcomputer.append(2)
+                canvas1.itemconfig(text2,text=f"computer: {listcomputer}")
+                canvas1.itemconfig(text_,text=f"Total number:{totalnumber}")
+        else:
+            
+            totalnumber-=2    
+            listplayer.append(2)
+            canvas1.itemconfig(text1,text=f"you: {listplayer}")
+            canvas1.itemconfig(text_,text=f"Total number:{totalnumber}")
+            if totalnumber<=0:
+                gameover(mode,game1)
+                return
+            else:
+                import random
+                a=random.randint(1,3)
+                totalnumber-=a
+                listcomputer.append(a)
                 canvas1.itemconfig(text2,text=f"computer: {listcomputer}")
                 canvas1.itemconfig(text_,text=f"Total number:{totalnumber}")
     def add3():
@@ -175,27 +144,28 @@ def click1(mode):
             canvas1.itemconfig(text1,text=f"you: {listplayer}")
             canvas1.itemconfig(text_,text=f"Total number:{totalnumber}")
             if totalnumber<=0:
-                def gameover(mode,game1):
-                    over=Toplevel()
-                    over.title("game over")
-                    labelover= Label(over, text="You lose!")
-                    def play_again():
-                         over.destroy()
-                         game1.destroy()
-                         click1(mode)   
-                    def back_to_menu():
-                         over.destroy()
-                         game1.destroy()           
-                    labelover.pack()
-                    buttonplayagain= Button(over, text="Play Again", command=play_again)
-                    buttonplayagain.pack()
-                    buttonbacktomenu= Button(over, text="Back to Menu", command=back_to_menu)
-                    buttonbacktomenu.pack()
-                    return
                 gameover(mode,game1)
+                return
             else:
                 totalnumber-=1
                 listcomputer.append(1)
+                canvas1.itemconfig(text2,text=f"computer: {listcomputer}")
+                canvas1.itemconfig(text_,text=f"Total number:{totalnumber}")
+        else:
+            
+            totalnumber-=3    
+            listplayer.append(3)
+            canvas1.itemconfig(text1,text=f"you: {listplayer}")
+            canvas1.itemconfig(text_,text=f"Total number:{totalnumber}")
+            if totalnumber<=0:
+                gameover(mode,game1)
+                return
+                gameover(mode,game1)
+            else:
+                import random
+                a=random.randint(1,3)
+                totalnumber-=a
+                listcomputer.append(a)
                 canvas1.itemconfig(text2,text=f"computer: {listcomputer}")
                 canvas1.itemconfig(text_,text=f"Total number:{totalnumber}")
     buttona1 = Button(game1,borderwidth=0, highlightthickness=0,image=questionpicture1)
