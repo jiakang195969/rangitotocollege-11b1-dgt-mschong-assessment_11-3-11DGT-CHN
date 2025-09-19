@@ -1,3 +1,4 @@
+import random
 from tkinter import *
 
 window = Tk()
@@ -46,7 +47,8 @@ def click1(mode):
         def play_again():
             over.destroy()
             game1.destroy()
-            click1(mode)   
+            choice1()
+              
         def back_to_menu():
             over.destroy()
             game1.destroy()           
@@ -55,7 +57,23 @@ def click1(mode):
         buttonplayagain.pack()
         buttonbacktomenu= Button(over, text="Back to Menu", command=back_to_menu)
         buttonbacktomenu.pack()
-                    
+    def gamewin(mode,game1):
+        win=Toplevel()
+        win.title("you win")
+        labelwin= Label(win, text="You win!")
+        def play_again():
+            win.destroy()
+            game1.destroy()
+            choice1()
+            click1(mode)              
+        def back_to_menu():
+            win.destroy()
+            game1.destroy()           
+        labelwin.pack()
+        buttonplayagain= Button(win, text="Play Again", command=play_again)
+        buttonplayagain.pack()
+        buttonbacktomenu= Button(win, text="Back to Menu", command=back_to_menu)
+        buttonbacktomenu.pack()               
     def click11():
         game11=Toplevel()
         game11.title("rules")
@@ -103,7 +121,7 @@ def click1(mode):
                 canvas1.itemconfig(text2,text=f"computer: {listcomputer}")
                 canvas1.itemconfig(text_,text=f"Total number:{totalnumber}")
                 if totalnumber<=0:
-                    gameover(mode,game1)
+                    gamewin(mode,game1)
                     return              
     def add2():
         if mode==1:
@@ -120,6 +138,9 @@ def click1(mode):
                 listcomputer.append(2)
                 canvas1.itemconfig(text2,text=f"computer: {listcomputer}")
                 canvas1.itemconfig(text_,text=f"Total number:{totalnumber}")
+                if totalnumber<=0:
+                    gamewin(mode,game1)
+                    return
         else:
             
             totalnumber-=2    
@@ -136,6 +157,9 @@ def click1(mode):
                 listcomputer.append(a)
                 canvas1.itemconfig(text2,text=f"computer: {listcomputer}")
                 canvas1.itemconfig(text_,text=f"Total number:{totalnumber}")
+                if totalnumber<=0:
+                    gamewin(mode,game1)
+                    return
     def add3():
         if mode==1:
             nonlocal totalnumber
@@ -151,6 +175,9 @@ def click1(mode):
                 listcomputer.append(1)
                 canvas1.itemconfig(text2,text=f"computer: {listcomputer}")
                 canvas1.itemconfig(text_,text=f"Total number:{totalnumber}")
+                if totalnumber<=0:
+                    gamewin(mode,game1)
+                    return
         else:
             
             totalnumber-=3    
@@ -168,6 +195,9 @@ def click1(mode):
                 listcomputer.append(a)
                 canvas1.itemconfig(text2,text=f"computer: {listcomputer}")
                 canvas1.itemconfig(text_,text=f"Total number:{totalnumber}")
+                if totalnumber<=0:
+                    gamewin(mode,game1)
+                    return
     buttona1 = Button(game1,borderwidth=0, highlightthickness=0,image=questionpicture1)
     buttona1.place(x=10,y=100,width=50,height=50)
     buttona1.config(command=click11)
@@ -206,19 +236,27 @@ def click3():
     back = PhotoImage(file="normal.png")
     background=back.subsample(2,2)
     label3 = Label(game3, image=background)
+    label3.image = background
     label3.pack()
     def click33():
         game33=Toplevel()
         game33.title("rules")
-        bkkk=PhotoImage(file="3.1.png")
-        bk3 = bkkk.subsample(2,2)
+        game333= PhotoImage(file="3.1.png")
+        bk3 = game333.subsample(2,2)
         label33= Label(game33, image=bk3)
         label33.pack()
-        game33.mainloop()
+
+    def plane1():
+        b1=Button(game3,borderwidth=0, highlightthickness=0)
+        b1.place(x=100)
+
+    differentgame=[plane1]
+    randomgame=random.choice(differentgame)
+    randomgame()
+
     buttona3 = Button(game3,borderwidth=0, highlightthickness=0,image=questionpicture1)
     buttona3.place(x=10,y=100,width=50,height=50)
     buttona3.config(command=click33)
-    game3.mainloop()
 def click4():
     game4 = Toplevel()
     game4.title("Anagram")
