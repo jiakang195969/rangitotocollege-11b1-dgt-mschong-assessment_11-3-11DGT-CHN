@@ -239,20 +239,20 @@ def click3():
     label3.image = background
     label3.pack()
     def click33():
-        game33=Toplevel()
+        game33 = Toplevel()
         game33.title("rules")
-        game333= PhotoImage(file="3.1.png")
+        game333 = PhotoImage(file="3.1.png")
         bk3 = game333.subsample(2,2)
-        label33= Label(game33, image=bk3)
+        label33 = Label(game33, image=bk3)
+        label33.image = bk3  
         label33.pack()
 
-    def plane1():
-        b1=Button(game3,borderwidth=0, highlightthickness=0)
-        b1.place(x=100)
-
-    differentgame=[plane1]
-    randomgame=random.choice(differentgame)
-    randomgame()
+    buttons={}
+    for i in range(10):        
+        for j in range(10):    
+            b = Button(game3, width=4, height=2, bg="lightgray")
+            b.grid(row=i, column=j)   
+            buttons[(i,j)] = b  
 
     buttona3 = Button(game3,borderwidth=0, highlightthickness=0,image=questionpicture1)
     buttona3.place(x=10,y=100,width=50,height=50)
