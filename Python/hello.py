@@ -235,9 +235,16 @@ def click3():
     game3.title("Find planes' head")
     back = PhotoImage(file="normal.png")
     background=back.subsample(2,2)
-    label3 = Label(game3, image=background)
-    label3.image = background
-    label3.pack()
+    canvasplane=Canvas(game3, width=background.width(), height=background.height(), highlightthickness=0)
+    canvasplane.pack()
+    canvasplane.background = background
+    canvasplane.create_image(0, 0, anchor="nw", image=background)
+    zero=0
+    steps=canvasplane.create_text(830,150,text=f"Steps:{zero}", font=("Ariel",30))
+    def increasesteps():
+        nonlocal zero
+        zero+=1
+        canvasplane.itemconfig(steps,text=f"Steps:{zero}")
     def click33():
         game33 = Toplevel()
         game33.title("rules")
@@ -246,6 +253,192 @@ def click3():
         label33 = Label(game33, image=bk3)
         label33.image = bk3  
         label33.pack()
+    def plane1():
+        def plane11red():
+            buttons3.config(bg="red")
+            increasesteps()
+            buttons3.config(state=DISABLED)
+        buttons3.config(command=plane11red)
+        increasesteps()
+        def plane11blue1():
+            buttons11.config(bg="blue")
+        buttons11.config(command=plane11blue1)
+        def plane11blue2():
+            buttons12.config(bg="blue")
+        buttons12.config(command=plane11blue2)
+        def plane11blue3():
+            buttons13.config(bg="blue")
+        buttons13.config(command=plane11blue3)
+        def plane11blue4():
+            buttons14.config(bg="blue")
+        buttons14.config(command=plane11blue4)
+        def plane11blue5():
+            buttons15.config(bg="blue")
+        buttons15.config(command=plane11blue5)
+        def plane11blue6():
+            buttons23.config(bg="blue")
+        buttons23.config(command=plane11blue6)
+        def plane11blue7():
+            buttons32.config(bg="blue")
+        buttons32.config(command=plane11blue7)
+        def plane11blue8():
+            buttons33.config(bg="blue")
+        buttons33.config(command=plane11blue8)
+        def plane11blue9():
+            buttons34.config(bg="blue")
+        buttons34.config(command=plane11blue9)
+        def plane12red():
+            buttons64.config(bg="red")
+        buttons64.config(command=plane12red)
+        def plane12blue1():
+            buttons45.config(bg="blue") 
+        buttons45.config(command=plane12blue1)
+        def plane12blue2():
+            buttons55.config(bg="blue")
+        buttons55.config(command=plane12blue2)
+        def plane12blue3():
+            buttons57.config(bg="blue") 
+        buttons57.config(command=plane12blue3)
+        def plane12blue4():
+            buttons65.config(bg="blue")   
+        buttons65.config(command=plane12blue4)
+        def plane12blue5():
+            buttons66.config(bg="blue")
+        buttons66.config(command=plane12blue5)
+        def plane12blue6():
+            buttons67.config(bg="blue")     
+        buttons67.config(command=plane12blue6)
+        def plane12blue7():
+            buttons75.config(bg="blue")
+        buttons75.config(command=plane12blue7)
+        def plane12blue8():
+            buttons77.config(bg="blue") 
+        buttons77.config(command=plane12blue8)
+        def plane12blue9():
+            buttons85.config(bg="blue")
+        buttons85.config(command=plane12blue9)
+    def plane2():
+        def plane21red():
+            buttons34.config(bg="red")
+        buttons34.config(command=plane21red)
+        def plane21blue1():
+            buttons3.config(bg="blue")
+        buttons3.config(command=plane21blue1)
+        def plane21blue2():
+            buttons4.config(bg="blue")
+        buttons4.config(command=plane21blue2)
+        def plane21blue3():
+            buttons5.config(bg="blue")
+        buttons5.config(command=plane21blue3)
+        def plane21blue4():
+            buttons14.config(bg="blue")
+        buttons14.config(command=plane21blue4)
+        def plane21blue5():
+            buttons22.config(bg="blue")
+        buttons22.config(command=plane21blue5)
+        def plane21blue6():
+            buttons23.config(bg="blue")
+        buttons23.config(command=plane21blue6)
+        def plane21blue7():
+            buttons24.config(bg="blue")
+        buttons24.config(command=plane21blue7)
+        def plane21blue8():
+            buttons25.config(bg="blue")
+        buttons25.config(command=plane21blue8)
+        def plane21blue9():
+            buttons26.config(bg="blue")
+        buttons26.config(command=plane21blue9)
+        def plane22red():
+            buttons75.config(bg="red")
+        buttons75.config(command=plane22red)
+        def plane22blue1():
+            buttons54.config(bg="blue")
+        buttons54.config(command=plane22blue1)
+        def plane22blue2():
+            buttons62.config(bg="blue")
+        buttons62.config(command=plane22blue2)
+        def plane22blue3():
+            buttons64.config(bg="blue")
+        buttons64.config(command=plane22blue3)
+        def plane22blue4():
+            buttons72.config(bg="blue")
+        buttons72.config(command=plane22blue4)
+        def plane22blue5():
+            buttons73.config(bg="blue")
+        buttons73.config(command=plane22blue5)
+        def plane22blue6():
+            buttons74.config(bg="blue")
+        buttons74.config(command=plane22blue6)
+        def plane22blue7():
+            buttons82.config(bg="blue")
+        buttons82.config(command=plane22blue7)
+        def plane22blue8():
+            buttons84.config(bg="blue")
+        buttons84.config(command=plane22blue8)
+        def plane22blue9():
+            buttons94.config(bg="blue")
+        buttons94.config(command=plane22blue9)
+    def plane3():
+        def plane31red():
+            buttons36.config(bg="red")
+        buttons36.config(command=plane31red)
+        def plane31blue1():
+            buttons44.config(bg="blue")
+        buttons44.config(command=plane31blue1)
+        def plane31blue2():
+            buttons45.config(bg="blue")
+        buttons45.config(command=plane31blue2)
+        def plane31blue3():
+            buttons46.config(bg="blue")
+        buttons46.config(command=plane31blue3)
+        def plane31blue4():
+            buttons47.config(bg="blue")
+        buttons47.config(command=plane31blue4)
+        def plane31blue5():
+            buttons48.config(bg="blue")
+        buttons48.config(command=plane31blue5)
+        def plane31blue6():
+            buttons56.config(bg="blue")
+        buttons56.config(command=plane31blue6)
+        def plane31blue7():
+            buttons65.config(bg="blue")
+        buttons65.config(command=plane31blue7)
+        def plane31blue8():
+            buttons66.config(bg="blue")
+        buttons66.config(command=plane31blue8)
+        def plane31blue9():
+            buttons67.config(bg="blue")
+        buttons67.config(command=plane31blue9)
+        def plane32red():
+            buttons83.config(bg="red")
+        buttons83.config(command=plane32red)
+        def plane32blue1():
+            buttons52.config(bg="blue")
+        buttons52.config(command=plane32blue1)
+        def plane32blue2():
+            buttons53.config(bg="blue")
+        buttons53.config(command=plane32blue2)
+        def plane32blue3():
+            buttons54.config(bg="blue")
+        buttons54.config(command=plane32blue3)
+        def plane32blue4():
+            buttons63.config(bg="blue")
+        buttons63.config(command=plane32blue4)
+        def plane32blue5():
+            buttons71.config(bg="blue")
+        buttons71.config(command=plane32blue5)
+        def plane32blue6():
+            buttons72.config(bg="blue")
+        buttons72.config(command=plane32blue6)
+        def plane32blue7():
+            buttons73.config(bg="blue")
+        buttons73.config(command=plane32blue7)
+        def plane32blue8():
+            buttons74.config(bg="blue")
+        buttons74.config(command=plane32blue8)
+        def plane32blue9():
+            buttons75.config(bg="blue")
+        buttons75.config(command=plane32blue9)
     border = Frame(game3, bg="black")
     border.place(x=230, y=50, width=473, height=473)
     buttons1 = Button(border, borderwidth=0, bg="white")
@@ -448,7 +641,8 @@ def click3():
     buttons99.place(x=378, y=425, width=46, height=46)
     buttons100 = Button(border, borderwidth=0, bg="white")
     buttons100.place(x=425, y=425, width=46, height=46)
-    
+    planelist=[plane1]
+    random.choice(planelist)()
     buttona3 = Button(game3,borderwidth=0, highlightthickness=0,image=questionpicture1)
     buttona3.place(x=10,y=100,width=50,height=50)
     buttona3.config(command=click33)
