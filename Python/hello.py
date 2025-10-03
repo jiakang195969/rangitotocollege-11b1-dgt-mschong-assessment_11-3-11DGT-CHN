@@ -253,192 +253,374 @@ def click3():
         label33 = Label(game33, image=bk3)
         label33.image = bk3  
         label33.pack()
+    def playagain():
+        yey= Toplevel()
+        yey.title("game over")
+        labelyey= Label(yey, text="You win!")
+        bback = Button(yey, text="Back to Menu", command=lambda:[yey.destroy(),game3.destroy()])
+        bagain = Button(yey, text="Play Again", command=lambda:[yey.destroy(),game3.destroy(),click3()])
+        labelyey.pack()
+        bback.pack()
+        bagain.pack()
     def plane1():
+        def stopplane():
+            s3 = buttons3.cget("state")
+            s64 = buttons64.cget("state")
+            if s3 == DISABLED and s64 == DISABLED:
+                playagain()
         def plane11red():
             buttons3.config(bg="red")
             increasesteps()
             buttons3.config(state=DISABLED)
+            stopplane()
         buttons3.config(command=plane11red)
-        increasesteps()
+        
         def plane11blue1():
             buttons11.config(bg="blue")
+            increasesteps()
+            buttons11.config(state=DISABLED)
         buttons11.config(command=plane11blue1)
         def plane11blue2():
             buttons12.config(bg="blue")
+            increasesteps()
+            buttons12.config(state=DISABLED)
         buttons12.config(command=plane11blue2)
         def plane11blue3():
             buttons13.config(bg="blue")
+            increasesteps()
+            buttons13.config(state=DISABLED)
         buttons13.config(command=plane11blue3)
         def plane11blue4():
             buttons14.config(bg="blue")
+            increasesteps()
+            buttons14.config(state=DISABLED)
         buttons14.config(command=plane11blue4)
         def plane11blue5():
             buttons15.config(bg="blue")
+            increasesteps()
+            buttons15.config(state=DISABLED)
         buttons15.config(command=plane11blue5)
         def plane11blue6():
             buttons23.config(bg="blue")
+            increasesteps()
+            buttons23.config(state=DISABLED)
         buttons23.config(command=plane11blue6)
         def plane11blue7():
             buttons32.config(bg="blue")
+            increasesteps()
+            buttons32.config(state=DISABLED)
         buttons32.config(command=plane11blue7)
         def plane11blue8():
             buttons33.config(bg="blue")
+            increasesteps()
+            buttons33.config(state=DISABLED)
         buttons33.config(command=plane11blue8)
         def plane11blue9():
             buttons34.config(bg="blue")
+            increasesteps()
+            buttons34.config(state=DISABLED)
         buttons34.config(command=plane11blue9)
         def plane12red():
             buttons64.config(bg="red")
+            increasesteps()
+            buttons64.config(state=DISABLED)
+            stopplane()
         buttons64.config(command=plane12red)
         def plane12blue1():
             buttons45.config(bg="blue") 
+            increasesteps()
+            buttons45.config(state=DISABLED)
         buttons45.config(command=plane12blue1)
         def plane12blue2():
             buttons55.config(bg="blue")
+            increasesteps()
+            buttons55.config(state=DISABLED)
         buttons55.config(command=plane12blue2)
         def plane12blue3():
             buttons57.config(bg="blue") 
+            increasesteps()
+            buttons57.config(state=DISABLED)
         buttons57.config(command=plane12blue3)
         def plane12blue4():
-            buttons65.config(bg="blue")   
+            buttons65.config(bg="blue")  
+            increasesteps()
+            buttons65.config(state=DISABLED) 
         buttons65.config(command=plane12blue4)
         def plane12blue5():
             buttons66.config(bg="blue")
+            increasesteps()
+            buttons66.config(state=DISABLED)
         buttons66.config(command=plane12blue5)
         def plane12blue6():
-            buttons67.config(bg="blue")     
+            buttons67.config(bg="blue")  
+            increasesteps()
+            buttons67.config(state=DISABLED)   
         buttons67.config(command=plane12blue6)
         def plane12blue7():
             buttons75.config(bg="blue")
+            increasesteps()
+            buttons75.config(state=DISABLED)
         buttons75.config(command=plane12blue7)
         def plane12blue8():
             buttons77.config(bg="blue") 
+            increasesteps()
+            buttons77.config(state=DISABLED)
         buttons77.config(command=plane12blue8)
         def plane12blue9():
             buttons85.config(bg="blue")
+            increasesteps()
+            buttons85.config(state=DISABLED)
         buttons85.config(command=plane12blue9)
+        def set_defaults():
+            def make_click(btn):
+                def on_click():
+                    increasesteps()
+                    btn.config(state=DISABLED)
+                return on_click
+            for w in border.winfo_children():
+                if isinstance(w, Button):
+                    if not w.cget("command"):
+                        w.config(command=make_click(w))
+        set_defaults()
+
     def plane2():
+        def stopplanes():
+            s34 = buttons34.cget("state")
+            s75 = buttons75.cget("state")
+            if s34 == DISABLED and s75 == DISABLED:
+                playagain()
         def plane21red():
             buttons34.config(bg="red")
+            increasesteps()
+            buttons34.config(state=DISABLED)
+            stopplanes()
         buttons34.config(command=plane21red)
         def plane21blue1():
             buttons3.config(bg="blue")
+            increasesteps()
+            buttons3.config(state=DISABLED)
         buttons3.config(command=plane21blue1)
         def plane21blue2():
             buttons4.config(bg="blue")
+            increasesteps()
+            buttons4.config(state=DISABLED)
         buttons4.config(command=plane21blue2)
         def plane21blue3():
             buttons5.config(bg="blue")
+            increasesteps()
+            buttons5.config(state=DISABLED)
         buttons5.config(command=plane21blue3)
         def plane21blue4():
             buttons14.config(bg="blue")
+            increasesteps()
+            buttons14.config(state=DISABLED)
         buttons14.config(command=plane21blue4)
         def plane21blue5():
             buttons22.config(bg="blue")
+            increasesteps()
+            buttons22.config(state=DISABLED)
         buttons22.config(command=plane21blue5)
         def plane21blue6():
             buttons23.config(bg="blue")
+            increasesteps()
+            buttons23.config(state=DISABLED)
         buttons23.config(command=plane21blue6)
         def plane21blue7():
             buttons24.config(bg="blue")
+            increasesteps()
+            buttons24.config(state=DISABLED)
         buttons24.config(command=plane21blue7)
         def plane21blue8():
             buttons25.config(bg="blue")
+            increasesteps()
+            buttons25.config(state=DISABLED)
         buttons25.config(command=plane21blue8)
         def plane21blue9():
             buttons26.config(bg="blue")
+            increasesteps()
+            buttons26.config(state=DISABLED)
         buttons26.config(command=plane21blue9)
         def plane22red():
             buttons75.config(bg="red")
+            increasesteps()
+            buttons75.config(state=DISABLED)
+            stopplanes()
         buttons75.config(command=plane22red)
         def plane22blue1():
             buttons54.config(bg="blue")
+            increasesteps()
+            buttons54.config(state=DISABLED)
         buttons54.config(command=plane22blue1)
         def plane22blue2():
             buttons62.config(bg="blue")
+            increasesteps()
+            buttons62.config(state=DISABLED)
         buttons62.config(command=plane22blue2)
         def plane22blue3():
             buttons64.config(bg="blue")
+            increasesteps()
+            buttons64.config(state=DISABLED)
         buttons64.config(command=plane22blue3)
         def plane22blue4():
             buttons72.config(bg="blue")
+            increasesteps()
+            buttons72.config(state=DISABLED)
         buttons72.config(command=plane22blue4)
         def plane22blue5():
             buttons73.config(bg="blue")
+            increasesteps()
+            buttons73.config(state=DISABLED)
         buttons73.config(command=plane22blue5)
         def plane22blue6():
             buttons74.config(bg="blue")
+            increasesteps()
+            buttons74.config(state=DISABLED)
         buttons74.config(command=plane22blue6)
         def plane22blue7():
             buttons82.config(bg="blue")
+            increasesteps()
+            buttons82.config(state=DISABLED)
         buttons82.config(command=plane22blue7)
         def plane22blue8():
             buttons84.config(bg="blue")
+            increasesteps()
+            buttons84.config(state=DISABLED)
         buttons84.config(command=plane22blue8)
         def plane22blue9():
             buttons94.config(bg="blue")
+            increasesteps()
+            buttons94.config(state=DISABLED)
         buttons94.config(command=plane22blue9)
+        def set_defaults():
+            def make_click(btn):
+                def on_click():
+                    increasesteps()
+                    btn.config(state=DISABLED)
+                return on_click
+            for w in border.winfo_children():
+                if isinstance(w, Button):
+                    if not w.cget("command"):
+                        w.config(command=make_click(w))
+        set_defaults()
     def plane3():
+        def stopplaness():
+            s36 = buttons36.cget("state")
+            s83 = buttons83.cget("state")
+            if s36 == DISABLED and s83 == DISABLED:
+                playagain()
         def plane31red():
             buttons36.config(bg="red")
+            increasesteps()
+            buttons36.config(state=DISABLED)
+            stopplaness()
         buttons36.config(command=plane31red)
         def plane31blue1():
             buttons44.config(bg="blue")
+            increasesteps()
+            buttons44.config(state=DISABLED)
         buttons44.config(command=plane31blue1)
         def plane31blue2():
             buttons45.config(bg="blue")
+            increasesteps()
+            buttons45.config(state=DISABLED)
         buttons45.config(command=plane31blue2)
         def plane31blue3():
             buttons46.config(bg="blue")
+            increasesteps()
+            buttons46.config(state=DISABLED)
         buttons46.config(command=plane31blue3)
         def plane31blue4():
             buttons47.config(bg="blue")
+            increasesteps()
+            buttons47.config(state=DISABLED)
         buttons47.config(command=plane31blue4)
         def plane31blue5():
             buttons48.config(bg="blue")
+            increasesteps()
+            buttons48.config(state=DISABLED)
         buttons48.config(command=plane31blue5)
         def plane31blue6():
             buttons56.config(bg="blue")
+            increasesteps()
+            buttons56.config(state=DISABLED)
         buttons56.config(command=plane31blue6)
         def plane31blue7():
             buttons65.config(bg="blue")
+            increasesteps()
+            buttons65.config(state=DISABLED)
         buttons65.config(command=plane31blue7)
         def plane31blue8():
             buttons66.config(bg="blue")
+            increasesteps()
+            buttons66.config(state=DISABLED)
         buttons66.config(command=plane31blue8)
         def plane31blue9():
             buttons67.config(bg="blue")
+            increasesteps()
+            buttons67.config(state=DISABLED)
         buttons67.config(command=plane31blue9)
         def plane32red():
             buttons83.config(bg="red")
+            increasesteps()
+            buttons83.config(state=DISABLED)
+            stopplaness()
         buttons83.config(command=plane32red)
         def plane32blue1():
             buttons52.config(bg="blue")
+            increasesteps()
+            buttons52.config(state=DISABLED)
         buttons52.config(command=plane32blue1)
         def plane32blue2():
             buttons53.config(bg="blue")
+            increasesteps()
+            buttons53.config(state=DISABLED)
         buttons53.config(command=plane32blue2)
         def plane32blue3():
             buttons54.config(bg="blue")
+            increasesteps()
+            buttons54.config(state=DISABLED)
         buttons54.config(command=plane32blue3)
         def plane32blue4():
             buttons63.config(bg="blue")
+            increasesteps()
+            buttons63.config(state=DISABLED)  
         buttons63.config(command=plane32blue4)
         def plane32blue5():
             buttons71.config(bg="blue")
+            increasesteps()
+            buttons71.config(state=DISABLED)
         buttons71.config(command=plane32blue5)
         def plane32blue6():
             buttons72.config(bg="blue")
+            increasesteps()
+            buttons72.config(state=DISABLED)
         buttons72.config(command=plane32blue6)
         def plane32blue7():
             buttons73.config(bg="blue")
+            increasesteps()
+            buttons73.config(state=DISABLED)
         buttons73.config(command=plane32blue7)
         def plane32blue8():
             buttons74.config(bg="blue")
+            increasesteps()
+            buttons74.config(state=DISABLED)
         buttons74.config(command=plane32blue8)
         def plane32blue9():
             buttons75.config(bg="blue")
+            increasesteps()
+            buttons75.config(state=DISABLED)
         buttons75.config(command=plane32blue9)
+        def set_defaults():
+            def make_click(btn):
+                def on_click():
+                    increasesteps()
+                    btn.config(state=DISABLED)
+                return on_click
+            for w in border.winfo_children():
+                if isinstance(w, Button):
+                    if not w.cget("command"):
+                        w.config(command=make_click(w))
+        set_defaults()
     border = Frame(game3, bg="black")
     border.place(x=230, y=50, width=473, height=473)
     buttons1 = Button(border, borderwidth=0, bg="white")
@@ -641,7 +823,8 @@ def click3():
     buttons99.place(x=378, y=425, width=46, height=46)
     buttons100 = Button(border, borderwidth=0, bg="white")
     buttons100.place(x=425, y=425, width=46, height=46)
-    planelist=[plane1]
+
+    planelist=[plane1,plane2,plane3]
     random.choice(planelist)()
     buttona3 = Button(game3,borderwidth=0, highlightthickness=0,image=questionpicture1)
     buttona3.place(x=10,y=100,width=50,height=50)
