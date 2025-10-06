@@ -210,7 +210,21 @@ def click1(mode):
     buttonone.config(command=add1)
     buttontwo.config(command=add2)
     buttonthree.config(command=add3)
-def click2():
+def choice2():
+    choice_win = Toplevel()
+    choice_win.title("choose")
+    modevar = IntVar(value=1)
+    yesbutton = Radiobutton(choice_win, text="Yes", variable=modevar, value=1)
+    nobutton = Radiobutton(choice_win, text="No", variable=modevar, value=2)
+    yesbutton.pack()
+    nobutton.pack()
+    def yesor_no():
+        select = modevar.get()  
+        choice_win.destroy()      
+        click1(select)           
+    buttonyon = Button(choice_win, text="confirm", command=yesor_no)
+    buttonyon.pack()
+def click2(mode):
     game2 = Toplevel()
     game2.title("Tic Tac Toe")
     back = PhotoImage(file="normal.png")
@@ -225,15 +239,91 @@ def click2():
         label22= Label(game22, image=bk2)
         label22.pack()
         game22.mainloop()
-    tbuttons1 = Button(game2, borderwidth=0,highlightthickness=0, bg="white")
-    tbuttons1.place(x=250,y=60,width=150,height=150)
-    tbuttons2 = Button(game2, borderwidth=0,highlightthickness=0, bg="white")
-    tbuttons2.place(x=400,y=60,width=150,height=150)
-    tbuttons3 = Button(game2, borderwidth=0,highlightthickness=0, bg="white")
-    tbuttons3.place(x=550,y=60,width=150,height=150)
-    buttona2 = Button(game2,borderwidth=0, highlightthickness=0,image=questionpicture1)
-    buttona2.place(x=10,y=100,width=50,height=50)
-    buttona2.config(command=click22)
+    
+    borders = Frame(game2, bg="black")
+    borders.place(x=250, y=60, width=456, height=456)
+    buttont1 = Button(borders, borderwidth=0, bg="white")
+    buttont1.place(x=2, y=2, width=150, height=150)
+    buttont2 = Button(borders, borderwidth=0, bg="white")
+    buttont2.place(x=153, y=2, width=150, height=150)
+    buttont3 = Button(borders, borderwidth=0, bg="white")
+    buttont3.place(x=304, y=2, width=150, height=150)
+    buttont4 = Button(borders, borderwidth=0, bg="white")
+    buttont4.place(x=2, y=153, width=150, height=150)
+    buttont5 = Button(borders, borderwidth=0, bg="white")
+    buttont5.place(x=153, y=153, width=150, height=150)
+    buttont6 = Button(borders, borderwidth=0, bg="white")
+    buttont6.place(x=304, y=153, width=150, height=150)
+    buttont7 = Button(borders, borderwidth=0, bg="white")
+    buttont7.place(x=2, y=304, width=150, height=150)
+    buttont8 = Button(borders, borderwidth=0, bg="white")
+    buttont8.place(x=153, y=304, width=150, height=150)
+    buttont9 = Button(borders, borderwidth=0, bg="white")
+    buttont9.place(x=304, y=304, width=150, height=150)
+    list_=[buttont1,buttont2,buttont3,buttont4,buttont5,buttont6,buttont7,buttont8,buttont9]
+    if mode==2:
+        import random
+        a=random.choice(list_)
+        a.config(text="O", state=DISABLED, font=("Ariel",100))
+    def gameoverr1():
+        overi=Toplevel()
+        overi.title("You win!")
+        labeloveri= Label(overi, text="You win!")
+        buttona= Button(overi, text="Play again?", command=lambda:[overi.destroy(),game2.destroy(),click2(mode)])
+        buttonb= Button(overi, text="Back to menu", command=lambda:[overi.destroy(),game2.destroy()])
+        labeloveri.pack()
+        buttona.pack()
+        buttonb.pack()
+    def gameoverr2():
+        overi=Toplevel()
+        overi.title("You lose!")
+        labeloveri= Label(overi, text="You lose!")
+        buttona= Button(overi, text="Play again?", command=lambda:[overi.destroy(),game2.destroy(),click2(mode)])
+        buttonb= Button(overi, text="Back to menu", command=lambda:[overi.destroy(),game2.destroy()])
+        labeloveri.pack()
+        buttona.pack()
+        buttonb.pack()
+    def gameoverr3():
+        overi=Toplevel()
+        overi.title("It's a draw!")
+        labeloveri= Label(overi, text="It's a draw!")
+        buttona= Button(overi, text="Play again?", command=lambda:[overi.destroy(),game2.destroy(),click2(mode)])
+        buttonb= Button(overi, text="Back to menu", command=lambda:[overi.destroy(),game2.destroy()])
+        labeloveri.pack()
+        buttona.pack()
+        buttonb.pack()
+    def check_winner():
+        winning_combinations = [(buttont1, buttont2, buttont3),(buttont4, buttont5, buttont6),(buttont7, buttont8, buttont9),(buttont1, buttont4, buttont7),(buttont2, buttont5, buttont8),(buttont3, buttont6, buttont9),(buttont1, buttont5, buttont9),(buttont3, buttont5, buttont7)]
+        for combo in winning_combinations:
+            texts = [btn.cget("text") for btn in combo]
+            if texts == ["X", "X", "X"]:
+                gameoverr1()
+                return
+            elif texts == ["O", "O", "O"]:
+                gameoverr2()
+                return
+        if all(btn.cget("state") == DISABLED for btn in list_):
+            gameoverr3()
+    def changex():
+        for btn in list_:
+            if btn.cget("text") == "":
+                btn.config(text="X", state=DISABLED, font=("Ariel",100))
+                break
+    def changeo():
+        for btn in list_:
+            if btn.cget("text") == "":
+                btn.config(text="O", state=DISABLED, font=("Ariel",100))
+                break
+    def player():
+        if mode==1:
+            for btn in list_:
+                btn.config(command=changex)
+                break
+            check_winner()
+
+    buttonta2 = Button(game2,borderwidth=0, highlightthickness=0,image=questionpicture1)
+    buttonta2.place(x=10,y=100,width=50,height=50)
+    buttonta2.config(command=click22)
 
     game2.mainloop()
 def click3():
@@ -616,6 +706,125 @@ def click3():
             increasesteps()
             buttons75.config(state=DISABLED)
         buttons75.config(command=plane32blue9)
+        def set_defaults():
+            def make_click(btn):
+                def on_click():
+                    increasesteps()
+                    btn.config(state=DISABLED)
+                return on_click
+            for w in border.winfo_children():
+                if isinstance(w, Button):
+                    if not w.cget("command"):
+                        w.config(command=make_click(w))
+        set_defaults()
+    def plane4():
+        def stopplaness():
+            s8 = buttons36.cget("state")
+            s97 = buttons83.cget("state")
+            if s8 == DISABLED and s97 == DISABLED:
+                playagain()
+        def plane41red():
+            buttons8.config(bg="red")
+            increasesteps()
+            buttons8.config(state=DISABLED)
+            stopplaness()
+        buttons8.config(command=plane41red)
+        def plane41blue1():
+            buttons16.config(bg="blue")
+            increasesteps()
+            buttons16.config(state=DISABLED)
+        buttons16.config(command=plane41blue1)
+        def plane41blue2():
+            buttons17.config(bg="blue")
+            increasesteps()
+            buttons17.config(state=DISABLED)
+        buttons17.config(command=plane41blue2)
+        def plane41blue3():
+            buttons18.config(bg="blue")
+            increasesteps()
+            buttons18.config(state=DISABLED)
+        buttons18.config(command=plane41blue3)
+        def plane41blue4():
+            buttons19.config(bg="blue")
+            increasesteps()
+            buttons19.config(state=DISABLED)
+        buttons19.config(command=plane41blue4)
+        def plane41blue5():
+            buttons20.config(bg="blue")
+            increasesteps()
+            buttons20.config(state=DISABLED)
+        buttons20.config(command=plane41blue5)
+        def plane41blue6():
+            buttons28.config(bg="blue")
+            increasesteps()
+            buttons28.config(state=DISABLED)
+        buttons28.config(command=plane41blue6)
+        def plane41blue7():
+            buttons37.config(bg="blue")
+            increasesteps()
+            buttons37.config(state=DISABLED)
+        buttons37.config(command=plane41blue7)
+        def plane41blue8():
+            buttons38.config(bg="blue")
+            increasesteps()
+            buttons38.config(state=DISABLED)
+        buttons38.config(command=plane41blue8)
+        def plane41blue9():
+            buttons39.config(bg="blue")
+            increasesteps()
+            buttons39.config(state=DISABLED)
+        buttons39.config(command=plane41blue9)
+        def plane42red():
+            buttons97.config(bg="red")
+            increasesteps()
+            buttons97.config(state=DISABLED)
+            stopplaness()
+        buttons97.config(command=plane42red)
+        def plane42blue1():
+            buttons67.config(bg="blue")
+            increasesteps()
+            buttons67.config(state=DISABLED)
+        buttons67.config(command=plane42blue1)
+        def plane42blue2():
+            buttons68.config(bg="blue")
+            increasesteps()
+            buttons68.config(state=DISABLED)
+        buttons68.config(command=plane42blue2)
+        def plane42blue3():
+            buttons69.config(bg="blue")
+            increasesteps()
+            buttons69.config(state=DISABLED)
+        buttons69.config(command=plane42blue3)
+        def plane42blue4():
+            buttons78.config(bg="blue")
+            increasesteps()
+            buttons78.config(state=DISABLED)
+        buttons78.config(command=plane42blue4)
+        def plane42blue5():
+            buttons86.config(bg="blue")
+            increasesteps()
+            buttons86.config(state=DISABLED)
+        buttons86.config(command=plane42blue5)
+        def plane42blue6():
+            buttons87.config(bg="blue")
+            increasesteps()
+            buttons87.config(state=DISABLED)
+        buttons87.config(command=plane42blue6)
+        def plane42blue7():
+            buttons88.config(bg="blue")
+            increasesteps()
+            buttons88.config(state=DISABLED)
+        buttons88.config(command=plane42blue7)
+        def plane42blue8():
+            buttons89.config(bg="blue")
+            increasesteps()
+            buttons89.config(state=DISABLED)
+        buttons89.config(command=plane42blue8)
+        def plane42blue9():
+            buttons90.config(bg="blue")
+            increasesteps()
+            buttons90.config(state=DISABLED)
+        buttons90.config(command=plane42blue9)
         def set_defaults():
             def make_click(btn):
                 def on_click():
