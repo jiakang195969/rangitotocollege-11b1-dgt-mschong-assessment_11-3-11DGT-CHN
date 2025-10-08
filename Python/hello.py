@@ -221,14 +221,16 @@ def choice2():
     def yesor_no():
         select = modevar.get()  
         choice_win.destroy()      
-        click1(select)           
+        click2(select)           
     buttonyon = Button(choice_win, text="confirm", command=yesor_no)
     buttonyon.pack()
-def click2(mode):
+def click2(select):
     game2 = Toplevel()
     game2.title("Tic Tac Toe")
     back = PhotoImage(file="normal.png")
     background=back.subsample(2,2)
+    X = PhotoImage(file="x.png").zoom(2,2)
+    O = PhotoImage(file="o.png").zoom(2,2)
     label2 = Label(game2, image=background)
     label2.pack()
     def click22():
@@ -261,10 +263,21 @@ def click2(mode):
     buttont9 = Button(borders, borderwidth=0, bg="white")
     buttont9.place(x=304, y=304, width=150, height=150)
     list_=[buttont1,buttont2,buttont3,buttont4,buttont5,buttont6,buttont7,buttont8,buttont9]
-    if mode==2:
-        import random
+    import random
+    if select==2:
         a=random.choice(list_)
-        a.config(text="O", state=DISABLED, font=("Ariel",100))
+        a.config(image=O, state=DISABLED)
+        list_.remove(a)
+    def playy():
+        for btn in list_:
+            btn.config(command=changex)
+        check_winner()
+        b=random.choice(list_)
+        b.config(image=O, state=DISABLED)
+        list_.remove(b)
+        check_winner()
+    playy()
+
     def gameoverr1():
         overi=Toplevel()
         overi.title("You win!")
@@ -293,34 +306,29 @@ def click2(mode):
         buttona.pack()
         buttonb.pack()
     def check_winner():
-        winning_combinations = [(buttont1, buttont2, buttont3),(buttont4, buttont5, buttont6),(buttont7, buttont8, buttont9),(buttont1, buttont4, buttont7),(buttont2, buttont5, buttont8),(buttont3, buttont6, buttont9),(buttont1, buttont5, buttont9),(buttont3, buttont5, buttont7)]
-        for combo in winning_combinations:
-            texts = [btn.cget("text") for btn in combo]
-            if texts == ["X", "X", "X"]:
+        winningcombinations = [(buttont1, buttont2, buttont3),(buttont4, buttont5, buttont6),(buttont7, buttont8, buttont9),(buttont1, buttont4, buttont7),(buttont2, buttont5, buttont8),(buttont3, buttont6, buttont9),(buttont1, buttont5, buttont9),(buttont3, buttont5, buttont7)]
+        xname = str(X)
+        oname = str(O)
+        for combo in winningcombinations:
+            texts = [btn.cget("image") for btn in combo]
+            if texts == [xname, xname, xname]:
                 gameoverr1()
                 return
-            elif texts == ["O", "O", "O"]:
+            elif texts == [oname, oname, oname]:
                 gameoverr2()
                 return
         if all(btn.cget("state") == DISABLED for btn in list_):
             gameoverr3()
     def changex():
         for btn in list_:
-            if btn.cget("text") == "":
-                btn.config(text="X", state=DISABLED, font=("Ariel",100))
-                break
+            btn.config(image=X, state=DISABLED)
+            list_.remove(btn)
+            break
     def changeo():
         for btn in list_:
-            if btn.cget("text") == "":
-                btn.config(text="O", state=DISABLED, font=("Ariel",100))
+            if btn.cget("image") == "":
+                btn.config(image=O, state=DISABLED,)
                 break
-    def player():
-        if mode==1:
-            for btn in list_:
-                btn.config(command=changex)
-                break
-            check_winner()
-
     buttonta2 = Button(game2,borderwidth=0, highlightthickness=0,image=questionpicture1)
     buttonta2.place(x=10,y=100,width=50,height=50)
     buttonta2.config(command=click22)
@@ -1085,7 +1093,7 @@ button4 = Button(window,text="",borderwidth=0, highlightthickness=0,image=imagef
 button4.place(x=525,y=290,width=202,height=157)
 label.pack()
 button1.config(command=choice1)
-button2.config(command=click2)
+button2.config(command=choice2)
 button3.config(command=click3)
 button4.config(command=click4)
 window.mainloop()
