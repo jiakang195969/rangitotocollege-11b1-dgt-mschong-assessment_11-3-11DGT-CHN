@@ -240,49 +240,127 @@ def click2(select):
         bk2 = bkk.subsample(2,2)
         label22= Label(game22, image=bk2)
         label22.pack()
-        game22.mainloop()
     
     borders = Frame(game2, bg="black")
     borders.place(x=250, y=60, width=456, height=456)
     buttont1 = Button(borders, borderwidth=0, bg="white")
     buttont1.place(x=2, y=2, width=150, height=150)
+    buttont1.config(command=lambda: playy1())
+
     buttont2 = Button(borders, borderwidth=0, bg="white")
     buttont2.place(x=153, y=2, width=150, height=150)
+    buttont2.config(command=lambda: playy2())
+
     buttont3 = Button(borders, borderwidth=0, bg="white")
     buttont3.place(x=304, y=2, width=150, height=150)
+    buttont3.config(command=lambda: playy3())
+
     buttont4 = Button(borders, borderwidth=0, bg="white")
     buttont4.place(x=2, y=153, width=150, height=150)
+    buttont4.config(command=lambda: playy4())
+
     buttont5 = Button(borders, borderwidth=0, bg="white")
     buttont5.place(x=153, y=153, width=150, height=150)
+    buttont5.config(command=lambda: playy5())
+
     buttont6 = Button(borders, borderwidth=0, bg="white")
     buttont6.place(x=304, y=153, width=150, height=150)
+    buttont6.config(command=lambda: playy6())
+
     buttont7 = Button(borders, borderwidth=0, bg="white")
     buttont7.place(x=2, y=304, width=150, height=150)
+    buttont7.config(command=lambda: playy7())
+
     buttont8 = Button(borders, borderwidth=0, bg="white")
     buttont8.place(x=153, y=304, width=150, height=150)
+    buttont8.config(command=lambda: playy8())
+
     buttont9 = Button(borders, borderwidth=0, bg="white")
     buttont9.place(x=304, y=304, width=150, height=150)
+    buttont9.config(command=lambda: playy9())
+
     list_=[buttont1,buttont2,buttont3,buttont4,buttont5,buttont6,buttont7,buttont8,buttont9]
+
+    buttonta2 = Button(game2,borderwidth=0, highlightthickness=0,image=questionpicture1)
+    buttonta2.place(x=10,y=100,width=50,height=50)
+    buttonta2.config(command=click22)
+
     import random
     if select==2:
         a=random.choice(list_)
         a.config(image=O, state=DISABLED)
         list_.remove(a)
-    def playy():
-        for btn in list_:
-            btn.config(command=changex)
-        check_winner()
+    def com():
         b=random.choice(list_)
         b.config(image=O, state=DISABLED)
         list_.remove(b)
         check_winner()
-    playy()
-
+    def playy1():
+        buttont1.config(image=X, state=DISABLED)
+        list_.remove(buttont1)
+        check_winner()
+        if list_:
+            com()
+    def playy2():
+        buttont2.config(image=X, state=DISABLED)
+        list_.remove(buttont2)
+        check_winner()
+        if list_:
+            com()
+            
+    def playy3():
+        buttont3.config(image=X, state=DISABLED)
+        list_.remove(buttont3)
+        check_winner()
+        if list_:
+            com()
+            
+    def playy4():
+        buttont4.config(image=X, state=DISABLED)
+        list_.remove(buttont4)
+        check_winner()
+        if list_:
+            com()
+            
+    def playy5():
+        buttont5.config(image=X, state=DISABLED)
+        list_.remove(buttont5)
+        check_winner()
+        if list_:
+            com()
+            
+    def playy6():
+        buttont6.config(image=X, state=DISABLED)
+        list_.remove(buttont6)
+        check_winner()
+        if list_:
+            com()
+            
+    def playy7():
+        buttont7.config(image=X, state=DISABLED)
+        list_.remove(buttont7)
+        check_winner()
+        if list_:
+            com()
+            
+    def playy8():
+        buttont8.config(image=X, state=DISABLED)
+        list_.remove(buttont8)
+        check_winner()
+        if list_:
+            com()
+            
+    def playy9():
+        buttont9.config(image=X, state=DISABLED)
+        list_.remove(buttont9)
+        check_winner()
+        if list_:
+            com()
     def gameoverr1():
         overi=Toplevel()
         overi.title("You win!")
         labeloveri= Label(overi, text="You win!")
-        buttona= Button(overi, text="Play again?", command=lambda:[overi.destroy(),game2.destroy(),click2(mode)])
+        buttona= Button(overi, text="Play again?", command=lambda:[overi.destroy(),game2.destroy(),choice2()])
         buttonb= Button(overi, text="Back to menu", command=lambda:[overi.destroy(),game2.destroy()])
         labeloveri.pack()
         buttona.pack()
@@ -291,7 +369,7 @@ def click2(select):
         overi=Toplevel()
         overi.title("You lose!")
         labeloveri= Label(overi, text="You lose!")
-        buttona= Button(overi, text="Play again?", command=lambda:[overi.destroy(),game2.destroy(),click2(mode)])
+        buttona= Button(overi, text="Play again?", command=lambda:[overi.destroy(),game2.destroy(),choice2()])
         buttonb= Button(overi, text="Back to menu", command=lambda:[overi.destroy(),game2.destroy()])
         labeloveri.pack()
         buttona.pack()
@@ -300,7 +378,7 @@ def click2(select):
         overi=Toplevel()
         overi.title("It's a draw!")
         labeloveri= Label(overi, text="It's a draw!")
-        buttona= Button(overi, text="Play again?", command=lambda:[overi.destroy(),game2.destroy(),click2(mode)])
+        buttona= Button(overi, text="Play again?", command=lambda:[overi.destroy(),game2.destroy(),choice2()])
         buttonb= Button(overi, text="Back to menu", command=lambda:[overi.destroy(),game2.destroy()])
         labeloveri.pack()
         buttona.pack()
@@ -319,21 +397,11 @@ def click2(select):
                 return
         if all(btn.cget("state") == DISABLED for btn in list_):
             gameoverr3()
-    def changex():
-        for btn in list_:
-            btn.config(image=X, state=DISABLED)
-            list_.remove(btn)
-            break
-    def changeo():
-        for btn in list_:
-            if btn.cget("image") == "":
-                btn.config(image=O, state=DISABLED,)
-                break
-    buttonta2 = Button(game2,borderwidth=0, highlightthickness=0,image=questionpicture1)
-    buttonta2.place(x=10,y=100,width=50,height=50)
-    buttonta2.config(command=click22)
+    
+    
+    
 
-    game2.mainloop()
+    
 def click3():
     game3 = Toplevel()
     game3.title("Find planes' head")
