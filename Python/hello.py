@@ -232,6 +232,7 @@ def click2(select):
     X = PhotoImage(file="x.png").zoom(2,2)
     O = PhotoImage(file="o.png").zoom(2,2)
     label2 = Label(game2, image=background)
+    label2.image = background
     label2.pack()
     def click22():
         game22=Toplevel()
@@ -245,39 +246,48 @@ def click2(select):
     borders.place(x=250, y=60, width=456, height=456)
     buttont1 = Button(borders, borderwidth=0, bg="white")
     buttont1.place(x=2, y=2, width=150, height=150)
-    buttont1.config(command=lambda: playy1())
+    if buttont1.cget("state") != DISABLED:
+        buttont1.config(command=lambda: playy1())
 
     buttont2 = Button(borders, borderwidth=0, bg="white")
     buttont2.place(x=153, y=2, width=150, height=150)
-    buttont2.config(command=lambda: playy2())
+    if buttont2.cget("state") != DISABLED:
+        buttont2.config(command=lambda: playy2())
 
     buttont3 = Button(borders, borderwidth=0, bg="white")
     buttont3.place(x=304, y=2, width=150, height=150)
-    buttont3.config(command=lambda: playy3())
+    if buttont3.cget("state") != DISABLED:
+        buttont3.config(command=lambda: playy3())
 
     buttont4 = Button(borders, borderwidth=0, bg="white")
     buttont4.place(x=2, y=153, width=150, height=150)
-    buttont4.config(command=lambda: playy4())
+    if buttont4.cget("state") != DISABLED:
+        buttont4.config(command=lambda: playy4())
 
     buttont5 = Button(borders, borderwidth=0, bg="white")
     buttont5.place(x=153, y=153, width=150, height=150)
-    buttont5.config(command=lambda: playy5())
+    if buttont5.cget("state") != DISABLED:
+        buttont5.config(command=lambda: playy5())
 
     buttont6 = Button(borders, borderwidth=0, bg="white")
     buttont6.place(x=304, y=153, width=150, height=150)
-    buttont6.config(command=lambda: playy6())
+    if buttont6.cget("state") != DISABLED:
+        buttont6.config(command=lambda: playy6())
 
     buttont7 = Button(borders, borderwidth=0, bg="white")
     buttont7.place(x=2, y=304, width=150, height=150)
-    buttont7.config(command=lambda: playy7())
+    if buttont7.cget("state") != DISABLED:
+        buttont7.config(command=lambda: playy7())
 
     buttont8 = Button(borders, borderwidth=0, bg="white")
     buttont8.place(x=153, y=304, width=150, height=150)
-    buttont8.config(command=lambda: playy8())
+    if buttont8.cget("state")!= DISABLED:
+        buttont8.config(command=lambda: playy8())
 
     buttont9 = Button(borders, borderwidth=0, bg="white")
     buttont9.place(x=304, y=304, width=150, height=150)
-    buttont9.config(command=lambda: playy9())
+    if buttont9.cget("state") != DISABLED:
+        buttont9.config(command=lambda: playy9())
 
     list_=[buttont1,buttont2,buttont3,buttont4,buttont5,buttont6,buttont7,buttont8,buttont9]
 
@@ -291,6 +301,8 @@ def click2(select):
         a.config(image=O, state=DISABLED)
         list_.remove(a)
     def com():
+        if len(list_)==0:
+            return
         b=random.choice(list_)
         b.config(image=O, state=DISABLED)
         list_.remove(b)
@@ -299,63 +311,54 @@ def click2(select):
         buttont1.config(image=X, state=DISABLED)
         list_.remove(buttont1)
         check_winner()
-        if list_:
-            com()
+        game2.after(500, com)
     def playy2():
         buttont2.config(image=X, state=DISABLED)
         list_.remove(buttont2)
         check_winner()
-        if list_:
-            com()
+        game2.after(500, com)
             
     def playy3():
         buttont3.config(image=X, state=DISABLED)
         list_.remove(buttont3)
         check_winner()
-        if list_:
-            com()
+        game2.after(500, com)
             
     def playy4():
         buttont4.config(image=X, state=DISABLED)
         list_.remove(buttont4)
         check_winner()
-        if list_:
-            com()
+        game2.after(500, com)
             
     def playy5():
         buttont5.config(image=X, state=DISABLED)
         list_.remove(buttont5)
         check_winner()
-        if list_:
-            com()
+        game2.after(500, com)
             
     def playy6():
         buttont6.config(image=X, state=DISABLED)
         list_.remove(buttont6)
         check_winner()
-        if list_:
-            com()
+        game2.after(500, com)
             
     def playy7():
         buttont7.config(image=X, state=DISABLED)
         list_.remove(buttont7)
         check_winner()
-        if list_:
-            com()
+        game2.after(500, com)
             
     def playy8():
         buttont8.config(image=X, state=DISABLED)
         list_.remove(buttont8)
         check_winner()
-        if list_:
-            com()
+        game2.after(500, com)
             
     def playy9():
         buttont9.config(image=X, state=DISABLED)
         list_.remove(buttont9)
         check_winner()
-        if list_:
-            com()
+        game2.after(500, com)
     def gameoverr1():
         overi=Toplevel()
         overi.title("You win!")
@@ -391,9 +394,15 @@ def click2(select):
             texts = [btn.cget("image") for btn in combo]
             if texts == [xname, xname, xname]:
                 gameoverr1()
+                for btn in list_:
+                    btn.config(state=DISABLED)
+                    list_.clear()
                 return
             elif texts == [oname, oname, oname]:
                 gameoverr2()
+                for btn in list_:
+                    btn.config(state=DISABLED)
+                    list_.clear()
                 return
         if all(btn.cget("state") == DISABLED for btn in list_):
             gameoverr3()
