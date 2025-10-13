@@ -1134,8 +1134,13 @@ def click4():
     game4.title("Anagram")
     back = PhotoImage(file="normal.png")
     background=back.subsample(2,2)
-    label4 = Label(game4, image=background)
-    label4.pack()
+    canvas4= Canvas(game4,width=background.width(), height=background.height(),highlightthickness=0)
+    canvas4.pack(fill="both", expand=True)
+    canvas4.create_image(0, 0, image=background, anchor="nw")
+    entry=Entry(game4,font=("Arial",30),bg="#47B352",fg='black',relief='flat')
+    canvas4.create_window(410,300,window=entry,width=250,height=46)
+    text4=canvas4.create_text(30,40,text=f'{word}')
+
     def click44():
         game44=Toplevel()
         game44.title("rules")
@@ -1144,10 +1149,28 @@ def click4():
         label44= Label(game44, image=bk4)
         label44.pack()
         game44.mainloop()
+    buttonsubmit=Button(game4,borderwidth=0,highlightbackground=0,text='submit',font=("Arial",20))
+    canvas4.create_window(666,300,window=buttonsubmit,width=100,height=46)
+    buttonsubmit.config(command=submit)
     buttona4 = Button(game4,borderwidth=0, highlightthickness=0,image=questionpicture1)
-    buttona4.place(x=10,y=100,width=50,height=50)
+    canvas4.create_window(10,100,window=buttona4,width=50,height=50)
     buttona4.config(command=click44)
-    list_=[]
+    list_=["journey", "freedom", "whisper", "victory", "quality", "general", "natural", "mystery",
+    "library", "kitchen", "justice", "musical", "gallery", "legend", "evening", "diamond",
+    "captain", "suddenly", "ancient", "zealous", "yesterday", "wonder", "village", "universe",
+    "treasure", "silence", "respect", "quarter", "purpose", "opinion", "forever", "museum",
+    "leather", "knowledge", "jewelry", "illusion", "holiday", "gravity", "fiction", "computer",
+    "drawing", "curious", "breathe", "athlete", "support", "romance", "plastic", "oxygen",
+    "neutral", "monster", "paradise", "kingdom", "jealous", "heaven", "honest", "garbage",
+    "forever", "emotion", "dolphin", "climate", "browser", "approve", "rhythm", "vampire",
+    "satisfy", "reliable", "helpless", "phoenix", "outdoor", "nervous", "majesty", "laptop",
+    "kitten", "journey", "imaginary", "history", "guitar", "friendly", "example", "dragon",
+    "crystal", "basket", "awesome", "twilight", "success", "revenge", "colony", "window",
+    "mercy", "mountain", "language", "reverse", "husband", "garden", "ruthlessness", "element",
+    "digital", "humanity", "beyond", "airport", "welcome", "unusual", "playground", "society"]
+    word = random.choice(list_)
+
+
     game4.mainloop()
 photo = PhotoImage(file="1.png")
 one= PhotoImage(file="1).png")
