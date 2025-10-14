@@ -1134,27 +1134,6 @@ def click4():
     game4.title("Anagram")
     back = PhotoImage(file="normal.png")
     background=back.subsample(2,2)
-    canvas4= Canvas(game4,width=background.width(), height=background.height(),highlightthickness=0)
-    canvas4.pack(fill="both", expand=True)
-    canvas4.create_image(0, 0, image=background, anchor="nw")
-    entry=Entry(game4,font=("Arial",30),bg="#47B352",fg='black',relief='flat')
-    canvas4.create_window(410,300,window=entry,width=250,height=46)
-    text4=canvas4.create_text(30,40,text=f'{word}')
-
-    def click44():
-        game44=Toplevel()
-        game44.title("rules")
-        bkkkk=PhotoImage(file="4.1.png")
-        bk4 = bkkkk.subsample(2,2)
-        label44= Label(game44, image=bk4)
-        label44.pack()
-        game44.mainloop()
-    buttonsubmit=Button(game4,borderwidth=0,highlightbackground=0,text='submit',font=("Arial",20))
-    canvas4.create_window(666,300,window=buttonsubmit,width=100,height=46)
-    buttonsubmit.config(command=submit)
-    buttona4 = Button(game4,borderwidth=0, highlightthickness=0,image=questionpicture1)
-    canvas4.create_window(10,100,window=buttona4,width=50,height=50)
-    buttona4.config(command=click44)
     list_=["journey", "freedom", "whisper", "victory", "quality", "general", "natural", "mystery",
     "library", "kitchen", "justice", "musical", "gallery", "legend", "evening", "diamond",
     "captain", "suddenly", "ancient", "zealous", "yesterday", "wonder", "village", "universe",
@@ -1169,6 +1148,53 @@ def click4():
     "mercy", "mountain", "language", "reverse", "husband", "garden", "ruthlessness", "element",
     "digital", "humanity", "beyond", "airport", "welcome", "unusual", "playground", "society"]
     word = random.choice(list_)
+    words=list(word)
+    random.shuffle(words)
+    final=' '.join(words)
+    canvas4= Canvas(game4,width=background.width(), height=background.height(),highlightthickness=0)
+    canvas4.pack(fill="both", expand=True)
+    canvas4.create_image(0, 0, image=background, anchor="nw")
+    entry=Entry(game4,font=("Arial",30),bg="#47B352",fg='black',relief='flat')
+    canvas4.create_window(410,300,window=entry,width=250,height=46)
+    text4=canvas4.create_text(450,190,text=f'{final}',font=('Ariel',40))
+    inputs=entry.get()
+    def right():
+        rights = Toplevel()
+        rights.title("You win")
+        label=Label(rights)
+        bwin=Button(rights,text="you're right!")
+        bback=Button(rights,text="back to menu")
+    def wrong():
+        wrongs=Toplevel()
+        rights.title("Wrong")
+        label1=Label()
+        
+
+    def check():
+        if inputs==final:
+            right
+        else:
+
+
+            
+    
+
+    def click44():
+        game44=Toplevel()
+        game44.title("rules")
+        bkkkk=PhotoImage(file="4.1.png")
+        bk4 = bkkkk.subsample(2,2)
+        label44= Label(game44, image=bk4)
+        label44.pack()
+        game44.mainloop()
+    buttona4 = Button(game4,borderwidth=0, highlightthickness=0,image=questionpicture1)
+    buttona4.place(x=10,y=100,width=50,height=50)
+    buttona4.config(command=click44)
+    buttonsubmit=Button(game4,borderwidth=0,highlightbackground=0,text='submit',font=("Arial",20))
+    buttonsubmit.place(x=666,y=100,width=50,height=10)
+    buttonsubmit.config(command=check)
+    
+    
 
 
     game4.mainloop()
