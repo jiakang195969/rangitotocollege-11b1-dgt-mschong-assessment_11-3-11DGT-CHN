@@ -1156,29 +1156,47 @@ def click4():
     canvas4.create_image(0, 0, image=background, anchor="nw")
     entry=Entry(game4,font=("Arial",30),bg="#47B352",fg='black',relief='flat')
     canvas4.create_window(410,300,window=entry,width=250,height=46)
-    text4=canvas4.create_text(450,190,text=f'{final}',font=('Ariel',40))
-    inputs=entry.get()
+    text4=canvas4.create_text(464,190,text=f'{final}',font=('Ariel',40))
+    
+    def change():
+        game4.destroy()
+        click4()
+        
+    def backmenu():
+        game4.destroy()
     def right():
         rights = Toplevel()
         rights.title("You win")
-        label=Label(rights)
-        bwin=Button(rights,text="you're right!")
+        label=Label(rights,text="you are right")
+        label.pack()
+        bwin=Button(rights,text="play again")
+        bwin.config(command=lambda:[change(),rights.destroy()])
         bback=Button(rights,text="back to menu")
+        bback.config(command=lambda:[backmenu(),rights.destroy()])
+        bwin.pack()
+        bback.pack()
     def wrong():
         wrongs=Toplevel()
-        rights.title("Wrong")
-        label1=Label()
+        wrongs.title("Wrong")
+        label1=Label(wrongs,text="Wrong——")
+        label1.pack()
+        bwrong=Button(wrongs,text="try again")
+        bwrong.config(command=wrongs.destroy)
+        bchange=Button(wrongs,text="change one")
+        bchange.config(command=lambda:[change(),wrongs.destroy()])
+        bback1=Button(wrongs,text="back to menu")
+        bback1.config(command=lambda:[backmenu(),wrongs.destroy()])
+        bback1.pack()
+        bchange.pack()
+        bwrong.pack()
         
 
     def check():
-        if inputs==final:
-            right
+        inputs=entry.get().lower()
+        if inputs==word:
+            right()
         else:
-
-
-            
-    
-
+            wrong()
     def click44():
         game44=Toplevel()
         game44.title("rules")
@@ -1190,8 +1208,8 @@ def click4():
     buttona4 = Button(game4,borderwidth=0, highlightthickness=0,image=questionpicture1)
     buttona4.place(x=10,y=100,width=50,height=50)
     buttona4.config(command=click44)
-    buttonsubmit=Button(game4,borderwidth=0,highlightbackground=0,text='submit',font=("Arial",20))
-    buttonsubmit.place(x=666,y=100,width=50,height=10)
+    buttonsubmit=Button(game4,borderwidth=0,highlightthickness=0,bg="#5ACF66",text='submit',font=("Arial",20))
+    buttonsubmit.place(x=550,y=285,width=100,height=30)
     buttonsubmit.config(command=check)
     
     
