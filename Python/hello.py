@@ -921,6 +921,125 @@ def click3():
                     if not w.cget("command"):
                         w.config(command=make_click(w))
         set_defaults()
+    def plane5():
+        def stopplaness():
+            s7 = buttons7.cget("state")
+            s34 = buttons34.cget("state")
+            if s7 == DISABLED and s34 == DISABLED:
+                playagain()
+        def palne51red():
+            buttons7.config(bg="red")
+            increasesteps()
+            buttons7.config(state=DISABLED)
+        buttons7.config(command=palne51red)
+        stopplaness()
+        def plane51blue1():
+            buttons15.config(bg="blue")
+            increasesteps()
+            buttons15.config(state=DISABLED)
+        buttons15.config(command=plane51blue1)
+        def plane51blue2():
+            buttons16.config(bg="blue")
+            increasesteps()
+            buttons16.config(state=DISABLED)
+        buttons16.config(command=plane51blue2)
+        def plane51blue3():
+            buttons17.config(bg="blue")
+            increasesteps()
+            buttons17.config(state=DISABLED)
+        buttons17.config(command=plane51blue3)
+        def plane51blue4():
+            buttons18.config(bg="blue")
+            increasesteps()
+            buttons18.config(state=DISABLED)
+        buttons18.config(command=plane51blue4)
+        def plane51blue5():
+            buttons19.config(bg="blue")
+            increasesteps()
+            buttons19.config(state=DISABLED)
+        buttons19.config(command=plane51blue5)
+        def plane51blue6():
+            buttons27.config(bg="blue")
+            increasesteps()
+            buttons27.config(state=DISABLED)
+        buttons27.config(command=plane51blue6)
+        def plane51blue7():
+            buttons36.config(bg="blue")
+            increasesteps()
+            buttons36.config(state=DISABLED)
+        buttons36.config(command=plane51blue7)
+        def plane51blue8():
+            buttons37.config(bg="blue")
+            increasesteps()
+            buttons37.config(state=DISABLED)
+        buttons37.config(command=plane51blue8)
+        def plane51blue9():
+            buttons38.config(bg="blue")
+            increasesteps()
+            buttons38.config(state=DISABLED)
+        buttons38.config(command=plane51blue9)
+        def plane52red():
+            buttons34.config(bg="red")
+            increasesteps()
+            buttons34.config(state=DISABLED)
+            stopplaness()
+        buttons34.config(command=plane52red)
+        def plane52blue1():
+            buttons42.config(bg="blue")
+            increasesteps()
+            buttons42.config(state=DISABLED)
+        buttons42.config(command=plane52blue1)
+        def plane52blue2():
+            buttons43.config(bg="blue")
+            increasesteps()
+            buttons43.config(state=DISABLED)
+        buttons43.config(command=plane52blue2)
+        def plane52blue3():
+            buttons44.config(bg="blue")
+            increasesteps()
+            buttons44.config(state=DISABLED)
+        buttons44.config(command=plane52blue3)
+        def plane52blue4():
+            buttons45.config(bg="blue")
+            increasesteps()
+            buttons45.config(state=DISABLED)
+        buttons45.config(command=plane52blue4)
+        def plane52blue5():
+            buttons46.config(bg="blue")
+            increasesteps()
+            buttons46.config(state=DISABLED)
+        buttons46.config(command=plane52blue5)
+        def plane52blue6():
+            buttons54.config(bg="blue")
+            increasesteps()
+            buttons54.config(state=DISABLED)
+        buttons54.config(command=plane52blue6)
+        def plane52blue7():
+            buttons63.config(bg="blue")
+            increasesteps()
+            buttons63.config(state=DISABLED)
+        buttons63.config(command=plane52blue7)
+        def plane52blue8():
+            buttons64.config(bg="blue")
+            increasesteps()
+            buttons64.config(state=DISABLED)
+        buttons64.config(command=plane52blue8)
+        def plane52blue9():
+            buttons65.config(bg="blue")
+            increasesteps()
+            buttons65.config(state=DISABLED)
+        buttons65.config(command=plane52blue9)
+        def set_defaults():
+            def make_click(btn):
+                def on_click():
+                    increasesteps()
+                    btn.config(state=DISABLED)
+                return on_click
+            for w in border.winfo_children():
+                if isinstance(w, Button):
+                    if not w.cget("command"):
+                        w.config(command=make_click(w))
+        set_defaults()
     border = Frame(game3, bg="black")
     border.place(x=230, y=50, width=473, height=473)
     buttons1 = Button(border, borderwidth=0, bg="white")
@@ -1124,7 +1243,7 @@ def click3():
     buttons100 = Button(border, borderwidth=0, bg="white")
     buttons100.place(x=425, y=425, width=46, height=46)
 
-    planelist=[plane1,plane2,plane3]
+    planelist=[plane1,plane2,plane3,plane4,plane5]
     random.choice(planelist)()
     buttona3 = Button(game3,borderwidth=0, highlightthickness=0,image=questionpicture1)
     buttona3.place(x=10,y=100,width=50,height=50)
@@ -1167,25 +1286,35 @@ def click4():
     def right():
         rights = Toplevel()
         rights.title("You win")
-        label=Label(rights,text="you are right")
+        label = Label(rights, text="you are right")
         label.pack()
-        bwin=Button(rights,text="play again")
-        bwin.config(command=lambda:[change(),rights.destroy()])
-        bback=Button(rights,text="back to menu")
-        bback.config(command=lambda:[backmenu(),rights.destroy()])
+        def play_again():
+            rights.destroy()
+            change()
+        def back_to_menu():
+            rights.destroy()
+            backmenu()
+        bwin = Button(rights, text="play again", command=play_again)
+        bback = Button(rights, text="back to menu", command=back_to_menu)
         bwin.pack()
         bback.pack()
     def wrong():
         wrongs=Toplevel()
         wrongs.title("Wrong")
-        label1=Label(wrongs,text="Wrong——")
+        label1=Label(wrongs,text="Wrong——the answer is "+word)
         label1.pack()
+        def playagain():
+            wrongs.destroy()
+            change()
+        def backto_menu():
+            wrongs.destroy()
+            backmenu()
         bwrong=Button(wrongs,text="try again")
         bwrong.config(command=wrongs.destroy)
         bchange=Button(wrongs,text="change one")
-        bchange.config(command=lambda:[change(),wrongs.destroy()])
+        bchange.config(command=playagain)
         bback1=Button(wrongs,text="back to menu")
-        bback1.config(command=lambda:[backmenu(),wrongs.destroy()])
+        bback1.config(command=backto_menu)
         bback1.pack()
         bchange.pack()
         bwrong.pack()
