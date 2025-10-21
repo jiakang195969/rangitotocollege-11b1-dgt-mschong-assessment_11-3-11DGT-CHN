@@ -7,16 +7,22 @@ questionpicture1=questionpicture.subsample(2,2)
 def choice1():
     choice_win = Toplevel()
     choice_win.title("choose")
+    choice_win.geometry("510x300+500+200")
+    bg_color = "#61B63D"
+    choice_win.configure(bg=bg_color)
+    choice_winl = Label(choice_win, text=
+                        "This game is a 21 game. \nPlayers take turns to remove\n1, 2 or 3 from the total number 21. \nThe player who removes\nthe last number loses. \n\n Do you want to play first?", font=("Ariel",20),bg=bg_color)
+    choice_winl.pack()
     mode_var = IntVar(value=1)
-    yes_button = Radiobutton(choice_win, text="Yes", variable=mode_var, value=1)
-    no_button = Radiobutton(choice_win, text="No", variable=mode_var, value=2)
+    yes_button = Radiobutton(choice_win, text="Yes", variable=mode_var, value=1,bg=bg_color)
+    no_button = Radiobutton(choice_win, text="No", variable=mode_var, value=2,bg=bg_color)
     yes_button.pack()
     no_button.pack()
     def yesorno():
         select = mode_var.get()  
         choice_win.destroy()      
         click1(select)           
-    buttonyon = Button(choice_win, text="confirm", command=yesorno)
+    buttonyon = Button(choice_win, text="confirm", command=yesorno,bg="white",borderwidth=0, highlightthickness=0)
     buttonyon.pack()
 def click1(mode):
     game1 = Toplevel()
@@ -214,15 +220,20 @@ def choice2():
     choice_win = Toplevel()
     choice_win.title("choose")
     modevar = IntVar(value=1)
-    yesbutton = Radiobutton(choice_win, text="Yes", variable=modevar, value=1)
-    nobutton = Radiobutton(choice_win, text="No", variable=modevar, value=2)
+    choice_win.geometry("510x300+500+200")
+    bg_color = "#61B63D"
+    choice_win.configure(bg=bg_color)
+    choice_winl = Label(choice_win, text="This game is called 'Tic Tac Toe'.\nYou are aiming to align\nthree of their marks in a row\nhorizontally, vertically, or diagonally.\n\nDo you want to play first?", font=("Ariel",20),bg=bg_color)
+    choice_winl.pack()
+    yesbutton = Radiobutton(choice_win, text="Yes", variable=modevar, value=1,bg=bg_color)
+    nobutton = Radiobutton(choice_win, text="No", variable=modevar, value=2,bg=bg_color)
     yesbutton.pack()
     nobutton.pack()
     def yesor_no():
         select = modevar.get()  
         choice_win.destroy()      
         click2(select)           
-    buttonyon = Button(choice_win, text="confirm", command=yesor_no)
+    buttonyon = Button(choice_win, text="confirm", command=yesor_no,bg="white",borderwidth=0, highlightthickness=0)
     buttonyon.pack()
 def click2(select):
     game2 = Toplevel()
@@ -240,6 +251,7 @@ def click2(select):
         bkk=PhotoImage(file="2.1.png")
         bk2 = bkk.subsample(2,2)
         label22= Label(game22, image=bk2)
+        label22.image = bk2
         label22.pack()
     
     borders = Frame(game2, bg="black")
@@ -291,9 +303,7 @@ def click2(select):
 
     list_=[buttont1,buttont2,buttont3,buttont4,buttont5,buttont6,buttont7,buttont8,buttont9]
 
-    buttonta2 = Button(game2,borderwidth=0, highlightthickness=0,image=questionpicture1)
-    buttonta2.place(x=10,y=100,width=50,height=50)
-    buttonta2.config(command=click22)
+    
 
     import random
     if select==2:
@@ -303,6 +313,24 @@ def click2(select):
     def com():
         if len(list_)==0:
             return
+        wini = [(buttont1, buttont2, buttont3),(buttont4, buttont5, buttont6),(buttont7, buttont8, buttont9),(buttont1, buttont4, buttont7),(buttont2, buttont5, buttont8),(buttont3, buttont6, buttont9),(buttont1, buttont5, buttont9),(buttont3, buttont5, buttont7)]
+        xname = str(X)
+        oname = str(O)
+        for combo in wini:
+            count=0
+            for btn in combo: 
+                btn.cget("image")
+                if btn.cget("image")==xname:
+                    count+=1
+                if count==2 and "" in combo[0].cget("image")+combo[1].cget("image")+combo[2].cget("image"):
+                    for btn in combo:
+                        if btn.cget("image")=="":
+                            btn.config(image=O, state=DISABLED)
+                            list_.remove(btn)
+                            check_winner()
+                            return
+            
+
         b=random.choice(list_)
         b.config(image=O, state=DISABLED)
         list_.remove(b)
@@ -406,6 +434,9 @@ def click2(select):
                 return
         if all(btn.cget("state") == DISABLED for btn in list_):
             gameoverr3()
+    buttonta2 = Button(game2,borderwidth=0, highlightthickness=0,image=questionpicture1)
+    buttonta2.place(x=10,y=100,width=50,height=50)
+    buttonta2.config(command=click22)
     
     
     
