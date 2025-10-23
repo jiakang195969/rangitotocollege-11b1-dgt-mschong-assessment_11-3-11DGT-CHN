@@ -494,7 +494,7 @@ def main(name):
             label33.image = bk3  
             label33.pack()
         def update():
-            global best_steps
+            nonlocal best_steps
             if zero < best_steps:
                 best_steps = zero
             canvasplane.itemconfig(best, text=f"Best Steps:{best_steps}")
@@ -996,8 +996,9 @@ def main(name):
                 buttons7.config(bg="red")
                 increasesteps()
                 buttons7.config(state=DISABLED)
+                stopplaness()
             buttons7.config(command=palne51red)
-            stopplaness()
+            
             def plane51blue1():
                 buttons15.config(bg="blue")
                 increasesteps()
@@ -1352,6 +1353,7 @@ def main(name):
         canvas4= Canvas(game4,width=background.width(), height=background.height(),highlightthickness=0)
         canvas4.pack(fill="both", expand=True)
         canvas4.create_image(0, 0, image=background, anchor="nw")
+        canvas4.background = background 
         entry=Entry(game4,font=("Arial",30),bg="#47B352",fg='black',relief='flat')
         canvas4.create_window(410,300,window=entry,width=250,height=46)
         text4=canvas4.create_text(464,190,text=f'{final}',font=('Ariel',40))
@@ -1412,7 +1414,7 @@ def main(name):
             bk4 = bkkkk.subsample(2,2)
             label44= Label(game44, image=bk4)
             label44.pack()
-            game44.mainloop()
+           
         buttona4 = Button(game4,borderwidth=0, highlightthickness=0,image=questionpicture1)
         buttona4.place(x=10,y=100,width=50,height=50)
         buttona4.config(command=click44)
@@ -1423,7 +1425,7 @@ def main(name):
         
 
 
-        game4.mainloop()
+    
     photo = PhotoImage(file="1.png")
     one= PhotoImage(file="1).png")
     two= PhotoImage(file="2).png")
