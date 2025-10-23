@@ -1413,6 +1413,7 @@ def main(name):
             bkkkk=PhotoImage(file="4.1.png")
             bk4 = bkkkk.subsample(2,2)
             label44= Label(game44, image=bk4)
+            label44.image = bk4
             label44.pack()
            
         buttona4 = Button(game4,borderwidth=0, highlightthickness=0,image=questionpicture1)
